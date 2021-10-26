@@ -1,0 +1,38 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Submit {
+WebDriver driver;
+
+@Before
+public void setup(){
+System.setProperty("webdriver.gecko.driver","/home/user/Desktop/geckodriver");
+driver = new FirefoxDriver();
+String url="https://www.bestundertaking.net/NewConnection.aspx";
+driver.manage().window().maximize();
+driver.get(url);
+driver.manage.timeouts.implicitlywait(7000, TimeUnit.MILLISECONDS);
+
+}
+@Test
+public void test(){
+}
+
+@After
+public void tearDown() {
+driver.close();
+}
+}
+
+
+FEEDBACK
+
+The website looks neat and clean. It has a lot of components that needed to be answered by the user. 
+It will help user to fill the details online which will be convinent for them.
+
+SUGGESTIONS
+
+The UI  can be improved a little and the website takes a little bit more time than normal to load.
+The view Signature here and view photo here functionality is not working correctly.
+Other components of thr UI takes a lof of time to load which is making the website heavy.
+Apart from that rest of it looks fine and good.
