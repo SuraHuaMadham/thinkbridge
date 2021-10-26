@@ -1,1 +1,49 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+public class Submit {
+WebDriver driver;
+
+@Before
+public void setup(){
+System.setProperty("webdriver.gecko.driver","/home/user/Desktop/geckodriver");
+driver = new FirefoxDriver();
+String url="http://jt-dev.azurewebsites.net/#/SignUp";
+driver.manage().window().maximize();
+driver.get(url);
+driver.manage.timeouts.implicitlywait(7000, TimeUnit.MILLISECONDS);
+
+}
+@Test
+public void test(){
+WebElement dropdown = driver.findElement(By.Xpath("//*[@id="language"]/input[1]"));  
+Select select = new Select(dropdown);  
+List<WebElement> options = select.getOptions();  
+for(WebElement we:options)  
+{  
+ System.out.println(we.getText());  
+}  
+
+Webelement name= driver.findElement(By.id("name")).sendkeys("abc");
+Webelement orgname= driver.findElement(By.id("orgname")).sendkeys("xyz");
+Webelement email= driver.findElement(By.id("email")).sendkeys("abc@gmail.com");
+
+WebElement agree = driver.findElement(By.Xpath("//*[@id="content"]/div/div[3]/div/section/div[1]/form/fieldset/div[4]/label/span")).click();
+WebElement signup = driver.findElement(By.Xpath("//*[@id="content"]/div/div[3]/div/section/div[1]/form/fieldset/div[5])).click();
+
+Thread.sleep(5000);
+
+Alert alert = driver.switchTo().alert(); // switch to alert
+
+String alertMessage= driver.switchTo().alert().getText(); // capture alert message
+
+System.out.println(alertMessage); // Print Alert Message
+Thread.sleep(5000);
+alert.accept();
+}
+
+@After
+public void tearDown() {
+driver.close();
+}
+}
